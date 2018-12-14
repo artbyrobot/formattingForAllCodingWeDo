@@ -6,7 +6,7 @@ just run once and it will just work...
 
 
 
-Printing Hallo World:
+Printing Hello World:
 
 This exe will print hello world and then close down
 
@@ -18,10 +18,11 @@ and contribute.  We use no pointers, no functions, no classes, and keep things
 really simple.  We also do not use any libraries or dependencies (for the most 
 part) and everything goes into one .cpp file.  All code goes into the main while 
 loop.  Any special functionality must use the Win32 API.  Besides the main.cpp 
-file and.exe file, a project will just have possibly some .txt files and maybe 
-some.jpg files.  That will be all that's in the folder for the most part.  For 
+file and .exe file, a project will just have possibly some .txt files and maybe 
+some .jpg files.  That will be all that's in the folder for the most part.  For 
 data structures we just use an array of strings or integers.  All code should 
-include debugging Boolean statements for testing purposes.  Code comments 
+include debugging Boolean statements for testing purposes.  All variables should 
+be global and listed at the top in the variables declaration section.  Code comments 
 should be kept to a minimum because the code variable naming convention serves 
 as code comments and documentation all at once - as do the debug Boolean console
 out statements littered throughout.  All major sections of code should include 
@@ -30,7 +31,7 @@ sections can be navigated to very quickly from an index at the top by selecting
 the index line item and hitting control + f to find that section lower down in the 
 code.  Alternatively, sections can be quickly navigated through just by hitting 
 control+f and typing in nextSection and hitting return.  All code should be able 
-to run on any Windows computer just by double-clicking the.exe file and no 
+to run on any Windows computer just by double-clicking the .exe file and no 
 additional dependencies or downloads should be needed.
 
 I'm okay with you guys reusing code from these projects for whatever you want.  
@@ -38,11 +39,11 @@ Hence the MIT license I chose.  But if you want to contribute, please try to kee
 it tightly conforming to my spacing conventions, variable usage conventions, 
 organizational scheme, debugging scheme, etc.  This way I can reuse the code 
 easily for any project and it looks like the way I write it.  I included some 
-basic library/headers I you have used historically below and I'd like you to try 
+basic library/headers I have used historically below and I'd like you to try 
 to stick to those so that I don't have to download any libraries to get the code 
 to run in my IDE which is Dev C++ version 4.9.9.2.  If you want a library I 
 haven't used, make sure it is one that is included with that IDE.  But ideally, 
-try to avoid using libraries entirely and just coded from scratch.  This way as 
+try to avoid using libraries entirely and just code from scratch.  This way as 
 much of the code as possible is done using the same formatting and is easy for me 
 to read.
 
