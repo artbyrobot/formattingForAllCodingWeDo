@@ -1,0 +1,498 @@
+/*
+
+Instructions:
+
+just run once and it will just work...  Although you have to modify the file pathing 
+if you are not using Larry's computer of course...
+
+
+Auto Start
+
+This exe will add itself to autostart programs when windows boots up 
+
+
+Automatically Detect Teamviewer Popup Window
+
+It will detect teamviewer popup and close it; 
+
+
+
+
+
+index
+
+our to do list section
+variables declarations section
+auto start section
+teamviewer popup detection section
+
+
+
+
+
+
+nextSection                 our to do list section
+
+    ------to do------
+    
+    nothing left to do it all works!
+    
+    
+    
+    
+    
+*/
+
+
+
+#define _WIN32_WINNT 0x0500            //tells the compiler that this is windows2000 or higher... by telling the compiler this, we gain access to the GetConsoleWindow(); command!  This is a necessary command for being able to get the handle of the console window... once we have the handle of the window, we can tell it to do things.. like dissapear for a while! lol 
+                                         //also note that this command MUST be written in BEFORE #include <windows.h>...
+#include <iostream>
+#include <windows.h>
+#include <iomanip>
+#include <time.h>  //allows getting system time
+#include <math.h>  //allows use of sqrt() function...
+#include <graphics.h>      //the header we need to use for creating of windows using borland's winBGlm library...
+#include <fstream>    // must include this header in order to access files
+
+using namespace std;    
+
+
+
+
+
+HWND cursorLocationWin;
+string lineString;
+POINT Pos;
+int mouseX = 0;
+int mouseY = 0;
+string mouseXString;
+string mouseYString;
+string windowTestString;
+const char * windowTestStringConstChar;
+bool runProgram = true;
+bool addToAutoStartList = true;
+HWND myConsoleWindow;
+bool grabThePathOfTheTeamviewerPopupKillerApplicationExecutable = false;
+bool addingProgramToAutostartInRegistryWaitingForFilenamePathGrabbing = false;
+string pathToTeamviewerPopupKillerApplicationExecutable;
+int unitOfLineNum;
+string unitOfString;
+string blahString;
+const char * pathToTeamviewerPopupKillerApplicationExecutableConstChar;
+bool executableFileNamePathGrabbingCompleted = false;
+bool openRegistryKey = false;
+bool addingProgramToAutostartInRegistryWaitingForOpeningOfRegistryKey = false;
+const char * blahStringConstChar;
+LONG registryKeyOpeningResult;
+DWORD pathLen;
+HKEY newValue;
+bool registryKeyOpeningAttemptCompleted = false;
+bool programAddingToRegistryAutostartListCompleted = false;
+bool setRegistryKeyValue = false;
+bool addingProgramToAutostartInRegistryWaitingForRegistryKeyValueSetting = false;
+bool registryKeyValueSettingAttemptCompleted = false;
+bool teamviewerPopupKillerApplicationWaitingForAddingToAutoStartList = true;
+bool determineIfTeamviewerPopupIsOpen = false;
+bool teamviewerPopupKillerApplicationWaitingForDeterminingIfTeamviewerPopupIsOpen = false;
+HWND hwnd;
+bool teamviewerPopupIsOpenCheckCompleted = false;
+
+
+
+
+
+
+
+//nextSection                 variables declarations section
+
+bool debuggingTeamviewerPopupDetectionSection = true;
+bool debuggingAddingToAutoStartList = true;
+
+
+
+
+
+
+
+int main()
+{     
+    while (runProgram == true)
+    {
+        
+        
+        
+        //nextSection                     auto start section
+        
+        if (addToAutoStartList == true)
+        {
+            addToAutoStartList = false;
+            
+            
+            if (debuggingAddingToAutoStartList == true)
+            {
+                cout << "adding program to auto start list\n";                               
+            }
+            
+            
+            myConsoleWindow = GetConsoleWindow();   //note that the GetConsoleWindow();command can only be used if you have #define _WIN32_WINNT 0x0500 typed in above #include <windows.h>...
+            ShowWindow(myConsoleWindow, SW_HIDE);
+            
+            
+            
+            
+            grabThePathOfTheTeamviewerPopupKillerApplicationExecutable = true;
+            
+            addingProgramToAutostartInRegistryWaitingForFilenamePathGrabbing = true;
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (grabThePathOfTheTeamviewerPopupKillerApplicationExecutable == true)
+        {
+            grabThePathOfTheTeamviewerPopupKillerApplicationExecutable = false;
+            
+            
+            
+            if (debuggingAddingToAutoStartList == true)
+            {
+                cout << "grabbing path of teamviewer popup killer application executable\n";                               
+            }
+            
+            
+            pathToTeamviewerPopupKillerApplicationExecutable = "F:/desktop/Prg Desktop Stuff/My Other Game/networking stuff/teamviewer popup killer.exe";                
+            
+            
+            lineString = pathToTeamviewerPopupKillerApplicationExecutable + "|";
+            
+            
+            
+            //c:/program files/My Other Game/networking stuff/teamviewer popup killer.exe|
+            
+            unitOfLineNum = 0;
+            
+            unitOfString = lineString[unitOfLineNum];
+            unitOfLineNum = unitOfLineNum + 1;
+            
+            blahString = unitOfString;
+            
+            unitOfString = lineString[unitOfLineNum];
+            unitOfLineNum = unitOfLineNum + 1;
+            
+            while (unitOfString != "|")
+            {
+                if (unitOfString == "/")
+                {
+                    blahString = blahString + "\\";
+                }
+                
+                if (unitOfString != "/")
+                {
+                    blahString = blahString + unitOfString;
+                }
+                
+                
+                unitOfString = lineString[unitOfLineNum];
+                
+                unitOfLineNum = unitOfLineNum + 1;
+            }
+            
+            pathToTeamviewerPopupKillerApplicationExecutable = blahString;
+                    
+            pathToTeamviewerPopupKillerApplicationExecutableConstChar = pathToTeamviewerPopupKillerApplicationExecutable.c_str();
+            
+            
+            
+            
+            executableFileNamePathGrabbingCompleted = true;                              
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (addingProgramToAutostartInRegistryWaitingForFilenamePathGrabbing == true && executableFileNamePathGrabbingCompleted == true)
+        {
+            addingProgramToAutostartInRegistryWaitingForFilenamePathGrabbing = false;
+            
+            executableFileNamePathGrabbingCompleted = false;
+            
+            
+            
+            openRegistryKey = true;
+            
+            addingProgramToAutostartInRegistryWaitingForOpeningOfRegistryKey = true;                                                                   
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (openRegistryKey == true)
+        {
+            openRegistryKey = false;
+            
+            
+            if (debuggingAddingToAutoStartList == true)
+            {
+                cout << "opening registry key\n";                               
+            }
+            
+            
+            blahString = "Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+            
+            blahStringConstChar = blahString.c_str();
+            
+            registryKeyOpeningResult = RegOpenKey(HKEY_LOCAL_MACHINE, blahStringConstChar, &newValue); 
+            
+            
+            registryKeyOpeningAttemptCompleted = true;                
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (addingProgramToAutostartInRegistryWaitingForOpeningOfRegistryKey == true && registryKeyOpeningAttemptCompleted == true)
+        {
+            addingProgramToAutostartInRegistryWaitingForOpeningOfRegistryKey = false;
+            
+            registryKeyOpeningAttemptCompleted = false;
+            
+            
+            if (registryKeyOpeningResult != ERROR_SUCCESS)
+            {
+                cout << "adding program to autostart in regristry failed\n";
+                cout << "opening registry key failed\n"; 
+                
+                RegCloseKey(newValue);
+                
+                programAddingToRegistryAutostartListCompleted = true;                      
+            }   
+            
+            if (registryKeyOpeningResult == ERROR_SUCCESS)
+            {
+                setRegistryKeyValue = true;
+                
+                addingProgramToAutostartInRegistryWaitingForRegistryKeyValueSetting = true;                    
+            }                                                              
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (setRegistryKeyValue == true)
+        {
+            setRegistryKeyValue = false;
+            
+            
+            if (debuggingAddingToAutoStartList == true)
+            {
+                cout << "setting registry key value\n";                               
+            }
+            
+            
+            blahString = "teamviewer popup killer application";
+            
+            blahStringConstChar = blahString.c_str();
+            
+            registryKeyOpeningResult = RegSetValueEx(newValue,	blahStringConstChar, 0, REG_SZ, (const BYTE*)pathToTeamviewerPopupKillerApplicationExecutableConstChar, (pathToTeamviewerPopupKillerApplicationExecutable.size() + 1) * sizeof(wchar_t));
+            
+            RegCloseKey(newValue);
+            
+            
+            registryKeyValueSettingAttemptCompleted = true;                        
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (addingProgramToAutostartInRegistryWaitingForRegistryKeyValueSetting == true && registryKeyValueSettingAttemptCompleted == true)
+        {
+            addingProgramToAutostartInRegistryWaitingForRegistryKeyValueSetting = false;
+            
+            registryKeyValueSettingAttemptCompleted = false;
+            
+            
+            if (registryKeyOpeningResult != ERROR_SUCCESS)
+            {
+                cout << "adding program to autostart in regristry failed\n";
+                cout << "setting regristry value failed\n";                        
+            } 
+            
+            
+            if (registryKeyOpeningResult == ERROR_SUCCESS)
+            {
+                cout << "Program was added to registry as an autostart program\n";
+                cout << "successfully!\n"; 
+            }  
+            
+            
+            programAddingToRegistryAutostartListCompleted = true;                                      
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (teamviewerPopupKillerApplicationWaitingForAddingToAutoStartList == true && programAddingToRegistryAutostartListCompleted == true)
+        {
+            teamviewerPopupKillerApplicationWaitingForAddingToAutoStartList = false;
+            
+            programAddingToRegistryAutostartListCompleted = false;
+            
+            
+            
+            determineIfTeamviewerPopupIsOpen = true;
+            
+            teamviewerPopupKillerApplicationWaitingForDeterminingIfTeamviewerPopupIsOpen = true;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //nextSection                        teamviewer popup detection section
+        
+        if (determineIfTeamviewerPopupIsOpen == true)
+        {
+            determineIfTeamviewerPopupIsOpen = false;
+            
+            
+            
+            
+            if (debuggingTeamviewerPopupDetectionSection == true)
+            {
+                cout << "determining if teamviewer popup is open right now based on window title\n";                               
+            }
+            
+            
+            
+            hwnd = FindWindow(NULL, "Sponsored session");
+            
+            if (hwnd != NULL)
+            {
+                cout << "\n\n\nAccidental opening of teamviewer free trial\n";
+                cout << "window detectected closing it\n";
+                
+                
+                if (GetAsyncKeyState(VK_RBUTTON) | GetAsyncKeyState(VK_LBUTTON))
+                {
+                    mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);                   
+                }
+                
+                SetForegroundWindow(hwnd);
+                SetActiveWindow(hwnd);
+                
+                keybd_event(VK_RETURN,0,0,0); 
+                Sleep(50);
+                keybd_event(VK_RETURN,0,KEYEVENTF_KEYUP,0);
+                Sleep(50);
+            }    
+            
+            
+            teamviewerPopupIsOpenCheckCompleted = true;
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (teamviewerPopupKillerApplicationWaitingForDeterminingIfTeamviewerPopupIsOpen == true && teamviewerPopupIsOpenCheckCompleted == true)
+        {
+            teamviewerPopupKillerApplicationWaitingForDeterminingIfTeamviewerPopupIsOpen = false;
+            
+            teamviewerPopupIsOpenCheckCompleted = false;
+            
+            
+            Sleep(400);
+            
+            
+            determineIfTeamviewerPopupIsOpen = true;
+            
+            teamviewerPopupKillerApplicationWaitingForDeterminingIfTeamviewerPopupIsOpen = true;
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    return 0;
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
